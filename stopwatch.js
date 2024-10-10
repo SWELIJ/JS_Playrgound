@@ -1,37 +1,30 @@
-function Stopwatch(){
-let startTime, endTime, running, duration = 0
- 
-this.start = function(){ 
-  running = true
-  startTime = new Date()
- 
-}
-
-this.stop = function(){
-  if(!running)
-    throw new Error('Must start stopwatch before stopping.')
-  running = false
-  endTime = new Date()
-
-  const seconds = (endTime.getTime()-startTime.getTime()) / 1000
-  duration += seconds
-}
-
-this.reset = function(){
-  duration = 0
-  running = false
-  startTime = null
-  endTime = null
-}
-
-Object.defineProperty(this, 'duration', {
-  get: function(){
-    return duration
+class Stopwatch {
+  constructor() {
+    this.duration = 0
   }
-  })
+  
+
+  start() {
+    this.running = true;
+    this.startTime = new Date();
+  }
+
+  stop() {
+    if (!this.running) throw new Error("Must start stopwatch before stopping.");
+    this.running = false;
+    this.endTime = new Date();
+
+    const seconds = (this.endTime.getTime() - this.startTime.getTime()) / 1000;
+    this.duration += seconds;
+  }
+
+  reset() {
+    this.duration = 0;
+    this.running = false;
+    this.startTime = null;
+    this.endTime = null;
+  }
 
 }
 
-const sw = new Stopwatch()
-
-
+const sw = new Stopwatch();
